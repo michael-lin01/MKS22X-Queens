@@ -72,6 +72,23 @@ public class QueenBoard{
     return true;
   }
 
+  public boolean solve(){
+    return solveH(0,0,0,0);
+  }
+
+  private boolean solveH(int r, int c, int prevR, int prevC){
+    if(r>=board.length){
+      return false;
+    }
+    if(r==board.length-1&&addQueen(r,c)){
+      return true;
+    }
+    if(addQueen(r,c)){
+      return solveH(r+1,0,prevR,prevC);
+    }
+    return solveH(r,c+1,prevR,prevC);
+  }
+
   public String toString(){
     String ans = "";
     for(int c = 0; c < board.length;c++){
