@@ -15,17 +15,60 @@ public class QueenBoard{
     }
     board[c][r] = -1;
     for(int i = 0; i < board.length;i++){
+      //horizontal
       if (board[c][i]!=-1){
-        board[c][i]+=1;
+        board[c][i]++;
       }
+      //vertical
       if(board[i][r]!=-1){
-        board[i][r]+=1;
+        board[i][r]++;
       }
+    }
+    //goes to edge of the board for diagonal
+    while(r>0&&c>0){
+      r--;
+      c--;
+    }
+    //diagonal
+    while(r<board.length&&c<board.length){
+      if(board[c][r]!=-1){
+        board[c][r]+=1;
+      }
+      c++;
+      r++;
     }
     return true;
   }
   private boolean removeQueen(int r, int c){
-    board[c][r] = 0;
+    if(board[c][r]!=-1){
+      return false;
+    }
+    int C = c;
+    int R = r;
+    for(int i = 0; i < board.length;i++){
+      //horizontal
+      if (board[c][i]!=-1){
+        board[c][i]--;
+      }
+      //vertical
+      if(board[i][r]!=-1){
+        board[i][r]--;
+      }
+    }
+    //goes to edge of the board for diagonal
+    while(r>0&&c>0){
+      r--;
+      c--;
+    }
+    //diagonal
+    while(r<board.length&&c<board.length){
+      if(board[c][r]!=-1){
+        board[c][r]--;
+      }
+      c++;
+      r++;
+    }
+    board[C][R] = 0;
     return true;
   }
 
@@ -66,6 +109,7 @@ public class QueenBoard{
     b.addQueen(1,2);
     System.out.println(b.toStringDebug());
     b.addQueen(0,0);
+    b.removeQueen(1,1);
     System.out.println(b);
     System.out.println(b.toStringDebug());
   }
