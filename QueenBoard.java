@@ -82,6 +82,20 @@ public class QueenBoard{
       c++;
       r++;
     }
+    r = R;
+    c = C;
+    while(r<board.length-1&&c>0){
+      r++;
+      c--;
+    }
+    while(r>0&&c<board.length){
+      System.out.println(r+" "+c);
+      if(board[c][r]!=-1){
+        board[c][r]+=1;
+      }
+      c--;
+      r++;
+    }
     board[C][R] = 0;
     return true;
   }
