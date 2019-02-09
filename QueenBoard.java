@@ -100,26 +100,27 @@ public class QueenBoard{
   }
 
   public boolean solve(){
-    return solveH(0,0);
+    return solveH(0);
   }
 
-  private boolean solveH(int r, int c){
+  private boolean solveH(int c){
     if(c>=board.length){
       System.out.println(this.toString());
       System.out.println(this.toStringDebug());
       return true;
     }
-    for(int i = 0; i<board.length;i++){
+    for(int r = 0; r<board.length;r++){
       System.out.println(this);
-      //System.out.println(i+" "+ c);
-      if(addQueen(i,c)){
-        return solveH(0,c+1);
-      }
-      if(i>=board.length-1){
+      //System.out.println(r+" "+ c);
+      if(addQueen(r,c)){
+        if (solveH(c+1)){
+          return true;
+        }
         removeQueen(r,c);
-        //return solveH()
       }
     }
+    System.out.println(this.toString());
+    System.out.println(this.toStringDebug());
     return false;
   }
 
@@ -157,6 +158,7 @@ public class QueenBoard{
     System.out.println(b.toStringDebug());
     b.addQueen(2,3);
     System.out.println(b.toStringDebug());
+    
     b.addQueen(1,1);
     b.addQueen(1,2);
     System.out.println(b.toStringDebug());
@@ -167,6 +169,5 @@ public class QueenBoard{
     */
     QueenBoard b = new QueenBoard(4);
     System.out.println(b.solve());
-    
   }
 }
