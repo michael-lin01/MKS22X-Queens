@@ -31,9 +31,9 @@ public class QueenBoard{
       r--;
       c--;
     }
-    while(r1<board.length-1&&c1>0){
-      r1++;
-      c1--;
+    while(r1>0&&c1<board.length-1){
+      r1--;
+      c1++;
     }
     //diagonal
     while(r<board.length&&c<board.length){
@@ -43,12 +43,12 @@ public class QueenBoard{
       c++;
       r++;
     }
-    while(r1>0&&c1<board.length){
+    while(r1<board.length&&c1>0){
       if(board[c1][r1]!=-1){
         board[c1][r1]+=1;
       }
-      c1++;
-      r1--;
+      c1--;
+      r1++;
     }
     return true;
   }
@@ -83,17 +83,17 @@ public class QueenBoard{
     }
     r = R;
     c = C;
-    while(r<board.length-1&&c>0){
-      r++;
-      c--;
+    while(r>0&&c<board.length-1){
+      r--;
+      c++;
     }
-    while(r>0&&c<board.length){
+    while(r<board.length&&c>0){
       System.out.println(r+" "+c);
       if(board[c][r]!=-1){
         board[c][r]--;
       }
-      c++;
-      r--;
+      c--;
+      r++;
     }
     board[C][R] = 0;
     return true;
@@ -105,23 +105,44 @@ public class QueenBoard{
 
   private boolean solveH(int c){
     if(c>=board.length){
-      System.out.println(this.toString());
-      System.out.println(this.toStringDebug());
+      //System.out.println(this.toString());
+      //System.out.println(this.toStringDebug());
       return true;
     }
     for(int r = 0; r<board.length;r++){
-      System.out.println(this);
-      //System.out.println(r+" "+ c);
       if(addQueen(r,c)){
+        System.out.println(this.toStringDebug());
         if (solveH(c+1)){
           return true;
         }
         removeQueen(r,c);
       }
     }
-    System.out.println(this.toString());
-    System.out.println(this.toStringDebug());
+    //System.out.println(this.toString());
+    //System.out.println(this.toStringDebug());
     return false;
+  }
+
+  public int countSolutions(){
+    return countH(0);
+  }
+
+  public int countH(int c){
+    if(c >= board.length){
+      System.out.println(this);
+      System.out.println(this.toStringDebug());
+      return 1;
+    }
+    int count = 0;
+    for(int r = 0; r < board.length; r++){
+      if(addQueen(r,c)){
+        count += countH(c+1);
+        removeQueen(r,c);
+      }
+    }
+    System.out.println(this);
+    System.out.println(this.toStringDebug());
+    return count;
   }
 
   public String toString(){
