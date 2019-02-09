@@ -44,7 +44,6 @@ public class QueenBoard{
       r++;
     }
     while(r1>0&&c1<board.length){
-      System.out.println(r1+" "+c1);
       if(board[c1][r1]!=-1){
         board[c1][r1]+=1;
       }
@@ -91,10 +90,10 @@ public class QueenBoard{
     while(r>0&&c<board.length){
       System.out.println(r+" "+c);
       if(board[c][r]!=-1){
-        board[c][r]+=1;
+        board[c][r]--;
       }
-      c--;
-      r++;
+      c++;
+      r--;
     }
     board[C][R] = 0;
     return true;
@@ -105,16 +104,20 @@ public class QueenBoard{
   }
 
   private boolean solveH(int r, int c){
-    if(r>=board.length){
+    if(c>=board.length){
+      System.out.println(this.toString());
+      System.out.println(this.toStringDebug());
       return true;
     }
     for(int i = 0; i<board.length;i++){
-      System.out.println(this.toStringDebug());
-      if(addQueen(r,i)){
-        return solveH(r+1,0);
+      System.out.println(this);
+      //System.out.println(i+" "+ c);
+      if(addQueen(i,c)){
+        return solveH(0,c+1);
       }
-      if(i==board.length){
+      if(i>=board.length-1){
         removeQueen(r,c);
+        //return solveH()
       }
     }
     return false;
@@ -148,7 +151,7 @@ public class QueenBoard{
   }
 
   public static void main(String args[]){
-    
+    /*
     QueenBoard b = new QueenBoard(4);
     System.out.println(b);
     System.out.println(b.toStringDebug());
@@ -161,9 +164,9 @@ public class QueenBoard{
     b.removeQueen(1,1);
     System.out.println(b);
     System.out.println(b.toStringDebug());
-    /*
-    QueenBoard b = new QueenBoard(5);
-    System.out.println(b.solve());
     */
+    QueenBoard b = new QueenBoard(4);
+    System.out.println(b.solve());
+    
   }
 }
