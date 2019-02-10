@@ -105,8 +105,8 @@ public class QueenBoard{
 
   private boolean solveH(int c){
     if(c>=board.length){
-      System.out.println(this.toString());
-      System.out.println(this.toStringDebug());
+      //System.out.println(this.toString());
+      //System.out.println(this.toStringDebug());
       return true;
     }
     for(int r = 0; r<board.length;r++){
@@ -117,8 +117,8 @@ public class QueenBoard{
         removeQueen(r,c);
       }
     }
-    System.out.println(this.toString());
-    System.out.println(this.toStringDebug());
+    //System.out.println(this.toString());
+    //System.out.println(this.toStringDebug());
     return false;
   }
 
@@ -127,10 +127,10 @@ public class QueenBoard{
     return countH(0);
   }
 
-  public int countH(int c){
+  private int countH(int c){
     if(c >= board.length){
-      System.out.println(this);
-      System.out.println(this.toStringDebug());
+      //System.out.println(this);
+      //System.out.println(this.toStringDebug());
       return 1;
     }
     int count = 0;
@@ -140,8 +140,8 @@ public class QueenBoard{
         removeQueen(r,c);
       }
     }
-    System.out.println(this);
-    System.out.println(this.toStringDebug());
+    //System.out.println(this);
+    //System.out.println(this.toStringDebug());
     return count;
   }
 
@@ -197,8 +197,11 @@ public class QueenBoard{
     */
 
 
-    QueenBoard b = new QueenBoard(4);
+    QueenBoard b = new QueenBoard(13);
     System.out.println(b.solve());
-    System.out.println()
+    System.out.println(b);
+    b = new QueenBoard(5);
+    System.out.println(b.countSolutions());
+    System.out.println(b);
   }
 }
