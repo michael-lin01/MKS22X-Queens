@@ -43,7 +43,7 @@ public class QueenBoard{
       c++;
       r++;
     }
-    while(r1<board.length&&c1>0){
+    while(r1<board.length&&c1>=0){
       if(board[c1][r1]!=-1){
         board[c1][r1]+=1;
       }
@@ -87,8 +87,7 @@ public class QueenBoard{
       r--;
       c++;
     }
-    while(r<board.length&&c>0){
-      System.out.println(r+" "+c);
+    while(r<board.length&&c>=0){
       if(board[c][r]!=-1){
         board[c][r]--;
       }
@@ -100,30 +99,31 @@ public class QueenBoard{
   }
 
   public boolean solve(){
+    if(board[0][0]!=0) throw new IllegalStateException();
     return solveH(0);
   }
 
   private boolean solveH(int c){
     if(c>=board.length){
-      //System.out.println(this.toString());
-      //System.out.println(this.toStringDebug());
+      System.out.println(this.toString());
+      System.out.println(this.toStringDebug());
       return true;
     }
     for(int r = 0; r<board.length;r++){
       if(addQueen(r,c)){
-        System.out.println(this.toStringDebug());
         if (solveH(c+1)){
           return true;
         }
         removeQueen(r,c);
       }
     }
-    //System.out.println(this.toString());
-    //System.out.println(this.toStringDebug());
+    System.out.println(this.toString());
+    System.out.println(this.toStringDebug());
     return false;
   }
 
   public int countSolutions(){
+    if(board[0][0]!=0) throw new IllegalStateException();
     return countH(0);
   }
 
@@ -173,7 +173,7 @@ public class QueenBoard{
   }
 
   public static void main(String args[]){
-    /*
+    /* testing add and remove
     QueenBoard b = new QueenBoard(4);
     System.out.println(b);
     System.out.println(b.toStringDebug());
@@ -187,8 +187,18 @@ public class QueenBoard{
     b.removeQueen(1,1);
     System.out.println(b);
     System.out.println(b.toStringDebug());
+    b.removeQueen(2,3);
+    b.addQueen(3,0);
+    System.out.println(b);
+    System.out.println(b.toStringDebug());
+    b.removeQueen(3,0);
+    System.out.println(b);
+    System.out.println(b.toStringDebug());
     */
+
+
     QueenBoard b = new QueenBoard(4);
     System.out.println(b.solve());
+    System.out.println()
   }
 }
