@@ -22,11 +22,6 @@ public class QueenBoard{
         board[i][r]++;
       }
     }
-    //goes to edge of the board for diagonal
-    while(r>0&&c>0){
-      r--;
-      c--;
-    }
     while(r1>0&&c1<board.length-1){
       r1--;
       c1++;
@@ -59,11 +54,6 @@ public class QueenBoard{
       if(board[i][r]!=-1){
         board[i][r]--;
       }
-    }
-    //goes to edge of the board for diagonal
-    while(r>0&&c>0){
-      r--;
-      c--;
     }
     //diagonal
     while(r<board.length&&c<board.length){
@@ -194,6 +184,5 @@ public class QueenBoard{
     System.out.println(b.countSolutions());
     System.out.println(b);
     System.out.println(b.solve());
-    System.out.println(b);
   }
 }
