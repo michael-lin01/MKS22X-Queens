@@ -22,10 +22,6 @@ public class QueenBoard{
         board[i][r]++;
       }
     }
-    while(r1>0&&c1<board.length-1){
-      r1--;
-      c1++;
-    }
     //diagonal
     while(r<board.length&&c<board.length){
       if(board[c][r]!=-1){
@@ -34,12 +30,12 @@ public class QueenBoard{
       c++;
       r++;
     }
-    while(r1<board.length&&c1>=0){
+    while(r1>=0&&c1<board.length){
       if(board[c1][r1]!=-1){
         board[c1][r1]+=1;
       }
-      c1--;
-      r1++;
+      r1--;
+      c1++;
     }
     return true;
   }
@@ -65,16 +61,12 @@ public class QueenBoard{
     }
     r = R;
     c = C;
-    while(r>0&&c<board.length-1){
-      r--;
-      c++;
-    }
-    while(r<board.length&&c>=0){
+    while(r>=0&&c<board.length){
       if(board[c][r]!=-1){
         board[c][r]--;
       }
-      c--;
-      r++;
+      r--;
+      c++;
     }
     board[C][R] = 0;
     return true;
@@ -177,10 +169,10 @@ public class QueenBoard{
     System.out.println(b);
     System.out.println(b.toStringDebug());
     */
-
+    
     //System.out.println(b.solve());
     //System.out.println(b);
-    QueenBoard b = new QueenBoard(14);
+    QueenBoard b = new QueenBoard(7);
     System.out.println(b.countSolutions());
     System.out.println(b);
     System.out.println(b.solve());
